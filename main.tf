@@ -47,7 +47,7 @@ resource "azurerm_network_security_group" "main" {
 
   security_rule {
     name                       = "AllowFromSubnet"
-    priority                   = 201
+    priority                   = 210
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
@@ -55,6 +55,19 @@ resource "azurerm_network_security_group" "main" {
     destination_port_range     = "*"
     source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "VirtualNetwork"
+  }
+
+  security_rule {
+    name                       = "AllowHTTP"
+    description                = "Allow HTTP access from load balancer to the Vms"
+    priority                   = 220
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
   }
 
   security_rule {
