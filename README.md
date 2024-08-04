@@ -23,6 +23,7 @@ For this project, you will write a Packer template and a Terraform template to d
         `az policy assignment create --name tagging-policy --policy tagging-policy`
     - Verify policy assignment
         `az policy assignment list`
+        ![Policy Assignment List](./images/policy_assignment_list.png "Policy Assignment List")
 
 2. Create a Server Image
     - Create an Azure Service Principal
@@ -31,6 +32,7 @@ For this project, you will write a Packer template and a Terraform template to d
     - Build a packer image
         `packer init server.json.pkr.hcl`
         `packer build server.json.pkr.hcl`
+        ![Packer Image](./images/packer-image.png "Packer Image")
 
 3. Create the Infrastructure 
     - Initialize the configuration
@@ -41,8 +43,12 @@ For this project, you will write a Packer template and a Terraform template to d
         `terraform plan -out solution.plan`
     - Apply the saved plan 
         `terraform apply solution.plan`
-    - `terraform import azurerm_resource_group.main /subscriptions/70ea8897-9e36-4ab6-b6b5-f88d7eac7313/resourceGroups/udacity-azure-devops-proj-01`
+        ![Created Resources](./images/packer-image.png "Infrastructure Resources Created")
+    - Destroy created resources
+        `terraform destroy`
 
+# Customizing Terraform Template
+    To customize the terraform template to your needs and requirements, you will need to amend the vars.tf file.
 
-### Output
-**Your words here**
+# Output
+    The output from running the terraform template is the load balancer URL.
